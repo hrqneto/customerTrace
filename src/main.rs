@@ -2,17 +2,16 @@
 
 #[macro_use]
 extern crate rocket;
-extern crate serde;
-extern crate serde_json;
+extern crate rocket_contrib;
 
-use rocket::http::Method;
-use rocket::response::content;
+use rocket_contrib::json::Json;
+use serde::Serialize;
+use serde_json::json;
 
-// Endpoint para a lista de clientes
 #[get("/clientes")]
-fn listagem_clientes() -> content::Json<&'static str> {
+fn listagem_clientes() -> Json<serde_json::Value> {
     let lista_clientes =
-        r#"[
+        json!([
         {
             "id": 100,
             "nome": "Enzo Daniel",
@@ -27,10 +26,25 @@ fn listagem_clientes() -> content::Json<&'static str> {
             "id": 300,
             "nome": "Jess",
             "email": "jess@example.com"
-        }
-    ]"#;
+        },
+        {
+            "id": 400,
+            "nome": "kiki",
+            "email": "kiki@example.com"
+        },
+        {
+            "id": 500,
+            "nome": "duda",
+            "email": "duda@example.com"
+        },
+        {
+            "id": 600,
+            "nome": "lele",
+            "email": "lele@example.com"
+        },
+    ]);
 
-    content::Json(lista_clientes)
+    Json(lista_clientes)
 }
 
 fn main() {
