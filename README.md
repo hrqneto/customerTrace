@@ -1,3 +1,4 @@
+//TODO melhororar document.
 # Rust API for Listing Customer Trace
 
 ![Rust Logo](https://www.rust-lang.org/static/images/rust-logo-blk.svg)
